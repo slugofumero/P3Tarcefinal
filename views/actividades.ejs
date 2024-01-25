@@ -1,0 +1,90 @@
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido a Hotel Sergio</title>
+    <link rel='stylesheet' href='/stylesheets/styleactividades.css' />
+    <script src="/javascripts/Actividades.js" defer></script>
+        <div class="header">
+            <h1><%= title %></h1>
+            <p>¡Tu escapada perfecta!</p>
+        </div>
+
+    
+
+        <div class="contenedor-botones">
+            <a href="/" class="boton"><%= boton1 %></a>
+            <a href="/restaurante" class="boton"><%= boton2 %></a>
+        </div>
+</head>
+
+
+
+
+<body>
+    <div class="botones-contenedor">
+    <button onclick="showContent(busquedaDelTesoro, 'act1')">Busqueda Del Tesoro</button>
+    <button onclick="showContent(casaDelTerror, 'act2')">Casa Del Terror</button>
+    <button onclick="showContent(juegosVr, 'act3')">Juegos Vr</button>
+    <button onclick="showContent(nocheDeCasino, 'act4')">Noche De Casino</button>
+</div>
+<actividades-element id="act1"></actividades-element>
+<actividades-element id="act2"></actividades-element>
+<actividades-element id="act3"></actividades-element>
+<actividades-element id="act4"></actividades-element>
+
+   
+    <script>
+        const busquedaDelTesoro = `
+            <div class="contenedor">
+                <img src="/images/busquedadeltesoro.png" alt="busqueda del tesoro" class="imagen-redondeada">
+                <div class="texto">
+                    <p class="titulo"><b>Busqueda del tesoro</b></p>
+                    <p class="cuerpo">En nuestra Búsqueda del Tesoro, los huéspedes disfrutan de una <b>emocionante aventura</b> resolviendo acertijos y siguiendo pistas a través del hotel. Es una <b>actividad familiar</b> ideal que combina diversión y descubrimiento, culminando en la emocionante revelación de un tesoro escondido, que ofrece una experiencia memorable y un recuerdo especial de su estancia.</p>
+                </div>
+            </div>
+        `;
+        const casaDelTerror = `
+    <div class="contenedor">
+        <div class="texto">
+            <p class="titulo"><b>Casa del terror</b></p>
+            <p class="cuerpo">La Casa del Terror es una atracción llena de <b>adrenalina</b> para los amantes de las emociones fuertes. Con pasillos oscuros, habitaciones temáticas y actores profesionales, esta experiencia promete escalofríos y sustos inolvidables, ideal para adultos y adolescentes que buscan un <b>desafío emocionante.</b></p>
+        </div>
+        <img src="/images/casadelterror.png" alt="casadelterror" class="imagen-redondeada">
+    </div>
+`;
+
+        const juegosVr = `
+            <div class="contenedor">
+                <img src="/images/juegosvr.png" alt="juegos de realidad virtual" class="imagen-redondeada">
+                <div class="texto">
+                    <p class="titulo"><b>Juegos de realidad virtual</b></p>
+                    <p class="cuerpo">Ofrecemos una experiencia inmersiva con <b>juegos de realidad virtual</b>, donde los huéspedes pueden sumergirse en mundos fantásticos. Desde aventuras épicas hasta simuladores deportivos, es una actividad emocionante para <b>todas las edades</b>, combinando tecnología de punta y diversión ilimitada.</p>
+                </div>
+            </div>
+        `;
+
+        const nocheDeCasino = `
+            <div class="contenedor">
+                <div class="texto">
+                    <p class="titulo"><b>Noche de Casino</b></p>
+                    <p class="cuerpo">Nuestra Noche de Casino trae el glamour y la <b>emoción de Las Vegas</b> con juegos clásicos como blackjack, ruleta y póker. Es una experiencia elegante y vibrante para los adultos, ofreciendo una combinación perfecta de suerte, habilidad y entretenimiento en un <b>ambiente sofisticado.</b></p>
+                </div>
+                <img src="/images/casino.png" alt="noche de casino" class="imagen-redondeada">
+            </div>
+        `;
+        function showContent(content, id) {
+            const actividadesElement = document.getElementById(id);
+            actividadesElement.setAttribute('data-content', content);
+            actividadesElement.toggle();
+        }
+    </script>
+
+    <div class="contact">
+        <h2>Contacto</h2>
+        <p>Teléfono: 922678095</p>
+        <p>Email: contacto@hotelSergio.com</p>
+    </div>
+
+</body>
+</html>

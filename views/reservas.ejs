@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check de reservas</title>
+    <link rel='stylesheet' href='/stylesheets/stylereservas.css' />
+   
+    <div class="header">
+        <h1><%= title %></h1>
+        <p>¡Tu escapada perfecta!</p>
+    </div>
+   
+   
+   
+    <div class="contenedor-botones">
+        <a href="/restaurante" class="boton"><%= boton1 %></a>
+        <a href="/" class="boton"><%= boton2 %></a>
+        <a href="/actividades" class="boton"><%= boton3 %></a>
+    </div>
+</head>
+<body>
+    <h1>Introduzca su Email</h1>
+
+    <div class="formulario">
+        <form  id="reservas">
+            <input type="email" name="email" placeholder="email de reserva">
+            <button type="submit">Ver reserva</button>
+        </form>
+    
+</div>
+<h2>Resultado de la busqueda</h2>
+<div class="respuestas">
+
+</div>
+<script>
+    document.getElementById('reservas').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const formData = new FormData(event.target);
+    var data = "";
+    formData.forEach((value) => {
+        data = value;
+    });
+    console.log(data);
+
+    fetch('http://127.0.0.1:9000/api/users/'+data, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta del servidor:', data);
+        const respuestasDiv = document.querySelector('.respuestas');
+        if (respuestasDiv&&data!={}) {
+            // Limpiar contenido previo
+            respuestasDiv.innerHTML = '';
+
+            // Crear y añadir un <p> por cada objeto en la respuesta
+            data.forEach(objeto => {
+                const nombre = document.createElement('p');
+                nombre.textContent = `El nombre de la reserva es ${objeto.name}`;
+                respuestasDiv.appendChild(nombre);
+
+                const apellido = document.createElement('p');
+                apellido.textContent = `El apellido de la reserva es ${objeto.surname}`;
+                respuestasDiv.appendChild(apellido);
+
+                const numero = document.createElement('p');
+                numero.textContent = `El número de Télefono es ${objeto.number}`;
+                respuestasDiv.appendChild(numero);
+
+                const habitacion = document.createElement('p');
+                habitacion.textContent = `La habitacion reservada es ${objeto.habitacion}`;
+                respuestasDiv.appendChild(habitacion);
+
+                const entrada = document.createElement('p');
+                entrada.textContent = `La fecha entrada es ${objeto.entrada}`;
+                respuestasDiv.appendChild(entrada);
+
+                const salida = document.createElement('p');
+                salida.textContent = `La fecha salida es ${objeto.salida}`;
+                respuestasDiv.appendChild(salida);
+                const separador = document.createElement('p');
+                separador.textContent ="----------------------------------------------";
+                respuestasDiv.appendChild(separador);
+            });
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        document.querySelector('.respuestas').innerHTML = 'Error: no existen reservas para este correo';
+    });
+});
+    </script>
+
+
+
+</body>
+</html>

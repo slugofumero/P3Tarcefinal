@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='/stylesheets/stylechat.css' />
+    <title>Chat en Vivo del Hotel</title>
+
+    
+</head>
+<body>
+    <h2>Chat en Vivo del Hotel</h2>
+    <div id="chatArea"></div>
+    <input type="text" id="messageInput" placeholder="Escribe tu mensaje aquí">
+    <button id="sendButton">Enviar</button>
+    <button id="shareScreenButton">Compartir Pantalla</button>
+    <script>
+let connections = {};
+let localConnection = new RTCPeerConnection();
+let socket = new WebSocket("ws://192.168.0.200:8080");
+let sendChannel = localConnection.createDataChannel("sendChannel");
+
+socket.onopen = function() {
+    localConnection.createOffer().then(offer => {
+        localConnection.setLocalDescription(offer);
+        socket.send(JSON.stringify({ type: "offer", offer: offer }));
+    });
+};
+
+
+
+
+
+function processMessage(data) {
+    let conn = connections[data.clientId];
+    console.log("Mensaje recibido:", data);
+
+    switch(data.type) {
+        case "answer":
+            if (conn) {
+                conn.setRemoteDescription(new RTCSessionDescription(data.answer));   
+            }
+            break;
+        case "candidate":
+            if (conn) {
+                conn.addIceCandidate(new RTCIceCandidate(data.candidate));
+            }
+            break;
+            case "message":
+                const chatArea = document.getElementById('chatArea');
+                const messageElement = document.createElement('p');
+                messageElement.textContent = "Staff: " + data.data; 
+                chatArea.appendChild(messageElement);   
+            break;
+
+    }
+}
+
+
+socket.onmessage = function(event) {
+    // Comprueba si el mensaje es un Blob
+    if (event.data instanceof Blob) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            try {
+                const data = JSON.parse(reader.result);
+                processMessage(data)
+            } catch (e) {
+                console.error("Error al analizar el mensaje Blob:", e);
+            }
+        };
+        reader.readAsText(event.data);
+    } else {
+        // Si no es un Blob, maneja el mensaje como una cadena normal
+        try {
+            const data = JSON.parse(event.data);
+            processMessage(data);
+            const receivedMessage = event.data; 
+        } catch (e) {
+            console.error("Error al analizar el mensaje:", e);
+        }
+    }
+};
+
+
+
+localConnection.onicecandidate = function(event) {
+    if (event.candidate) {
+        socket.send(JSON.stringify({ type: "candidate", candidate: event.candidate }));
+    }
+};
+
+
+
+document.getElementById('sendButton').addEventListener('click', function() {
+    const messageInput = document.getElementById('messageInput');
+    const message = messageInput.value;
+
+    if (message) {
+        // Enviar el mensaje a través de WebSocket
+        socket.send(JSON.stringify({ type: "message", data: message }));
+
+        // Limpiar el campo de entrada después de enviar
+        document.getElementById('messageInput').value = '';
+        // Añadir el mensaje al área del chat
+        const chatArea = document.getElementById('chatArea');
+        const messageElement = document.createElement('p');
+        messageElement.textContent = "Tú: " + message;
+        chatArea.appendChild(messageElement);
+
+        // Limpiar el campo de entrada después de enviar
+        messageInput.value = '';
+    }
+});
+
+
+
+
+
+async function compartirPantalla() {
+    try {
+        const flujoPantalla = await navigator.mediaDevices.getDisplayMedia({ video: true });
+
+        if (localConnection.getSenders().length > 0) {
+            localConnection.getSenders()[0].replaceTrack(flujoPantalla.getVideoTracks()[0]);
+        } else {
+            localConnection.addTrack(flujoPantalla.getVideoTracks()[0], flujoPantalla);
+        }
+    } catch (error) {
+        console.error("Error al compartir pantalla:", error);
+    }
+}
+
+document.getElementById('shareScreenButton').addEventListener('click', compartirPantalla);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido a Hotel Sergio</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' /> 
+        <div class="header">
+            <h1><%= title %></h1>
+            <p>¡Tu escapada perfecta!</p>
+        </div>
+
+    
+
+        <div class="contenedor-botones">
+            <a href="/restaurante" class="boton"><%= boton1 %></a>
+            <a href="#habitaciones" class="boton"><%= boton2 %></a>
+            <a href="/actividades" class="boton"><%= boton3 %></a>
+            <a href="/reservas" class="boton"><%= boton4 %></a>
+            <a href="/chatusuario" class="boton"><%= boton5 %></a>
+
+        </div>
+</head>
+
+
+
+
+<body>
+
+
+    
+    <div class="carrusel">
+        <div class="carrusel-imagenes">
+            <img src="/images/fachada.png" alt="fachada" style="width:100%">
+            <img src="/images/piscina.png" alt="Piscina del hotel" style="width:100%">
+            <img src="/images/recepcion.png" alt="Recepción" style="width:100%">
+        </div>
+    </div>
+    
+    <div id="habitaciones" class="seccion-habitaciones">
+      
+        <h2 class="habitacionestitulo">Habitaciones</h2>
+            <div class="habitacionborde">
+                <h3 class="titulohabitacion">Habitación TARCE</h3>
+                <div class="habitacioninterior">
+                    <img src="/images/TARCE.png" alt="Imagen" class="imagen">
+                    <div class="contenido">
+                        <p><%= descripcionTarce %></p>
+                        <p>Ducha.</p>
+                        <p>Conexión Wi-Fi (sin cargo).</p>
+                        <p>2 persónas máx.</p>
+                    </div>
+                    <a href="/reservar" class="boton-reservar">Reservar</a>
+                </div>
+            </div>
+
+            <div class="habitacionborde">
+                <h3 class="titulohabitacion">Habitación Tenerife</h3>
+                <div class="habitacioninterior">
+                    <img src="/images/Tenerife.png" alt="Imagen" class="imagen">
+                    <div class="contenido">
+                        <p><%= descripcionTF %></p>
+                        <p>Bañera.</p>
+                        <p>Cafa fuerte.</p>
+                        <p>2 personas máx.</p>
+                    </div>
+                    <a href="/reservar" class="boton-reservar">Reservar</a>
+                </div>
+            </div>
+            <div class="habitacionborde">
+                <h3 class="titulohabitacion">Habitación GranCa</h3>
+                <div class="habitacioninterior">
+                    <img src="/images/GranCa.png" alt="Imagen" class="imagen">
+                    <div class="contenido">
+                        <p><%= descripcionGC %></p>
+                        <p>Balcón.</p>
+                        <p>Cafa fuerte.</p>
+                        <p>2 personas máx.</p>
+                    </div>
+                    <a href="/reservar" class="boton-reservar">Reservar</a>
+                </div>
+            </div>
+            <div class="habitacionborde">
+                <h3 class="titulohabitacion">Habitación Sergio</h3>
+                <div class="habitacioninterior">
+                    <img src="/images/Sergio.png" alt="Imagen" class="imagen">
+                    <div class="contenido">
+                        <p><%= descripcionSergio %></p>
+                        <p>Sala de estar.</p>
+                        <p>Terraza.</p>
+                        <p>2 personas máx.</p>
+                    </div>
+                    <a href="/reservar" class="boton-reservar">Reservar</a>
+                </div>
+            </div>
+
+
+
+    </div>
+
+
+    <div class="contact">
+        <h2>Contacto</h2>
+        <p>Teléfono: 922678095</p>
+        <p>Email: contacto@hotelSergio.com</p>
+    </div>
+
+</body>
+<script src="/javascripts/script.js"></script>
+</html>

@@ -1,0 +1,118 @@
+
+
+.header {
+  text-align: center;
+  background-color: #3c3c3c;
+  color: white;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+ .contact {
+  margin: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.contact {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.carrusel {
+  position: relative;
+  width: 100%;
+  height: 75vh; 
+  overflow: hidden;
+}
+
+.carrusel-imagenes img {
+  width: 100%;
+  height: 75vh; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.contenedor-botones {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 0;
+}
+
+.boton {
+  flex: 1; /* Cada botón ocupa un tercio del espacio disponible */
+  padding: 10px 20px;
+  margin: 0 10px; /* Añade separación entre botones */
+  border: none;
+  border-radius: 5px;
+  background-color: #3c3c3c;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif;
+}
+
+.boton:hover {
+  background-color: #3c3c3c;
+}
+.habitacionestitulo{
+
+  font-size: 40px;
+}
+.seccion-habitaciones {
+  /* Estilos para la sección de habitaciones */
+  padding: 20px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+.habitacionborde{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0px 200px;
+  font-size: 30px;
+}
+.habitacioninterior{
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  margin: 20px;
+  font-size: 20px;
+}
+
+.imagen {
+  width: 400px; 
+  margin-right: 20px;
+}
+
+.contenido {
+  flex-grow: 1;
+}
+
+.boton-reservar {
+  padding: 15px 30px;
+  margin-left: 20px; /* Separación entre el texto y el botón */
+  border: none;
+  border-radius: 5px;
+  background-color: #3c3c3c; 
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
+}
+
+.boton-reservar:hover {
+  background-color: #3c3c3c;
+}
+.titulohabitacion{
+  margin-left: 20px;
+}

@@ -1,0 +1,87 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f4f4f4; /* Un fondo neutro para el contenido debajo del formulario */
+}
+
+
+
+.header {
+  text-align: center;
+  background-color: #3c3c3c;
+  color: white;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+
+
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+input[type="email"]
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+button {
+  display: inline-block;
+  background-color: #0056b3;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004494;
+}
+
+/* Ajustes para el contenido de respuesta */
+.respuestas {
+   /* Debe ser al menos la altura del formulario para evitar superposiciones */
+   font-family: Arial, sans-serif; 
+  font-size: 20px;
+  background: #fff;
+}
+.contenedor-botones {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 0;
+}
+
+.boton {
+  flex: 1; /* Cada botón ocupa un tercio del espacio disponible */
+  padding: 10px 20px;
+  margin: 0 10px; /* Añade separación entre botones */
+  border: none;
+  border-radius: 5px;
+  background-color: #3c3c3c;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif;
+}
