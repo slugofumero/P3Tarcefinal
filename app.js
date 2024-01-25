@@ -40,8 +40,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-
-
 const WebSocket = require('ws');
 
 const wss = new WebSocket.Server({ port: 8080 });
