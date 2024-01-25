@@ -16,7 +16,7 @@
     <script>
 let connections = {};
 let localConnection = new RTCPeerConnection();
-let socket = new WebSocket("ws://192.168.0.200:8080");
+let socket = new WebSocket("ws://https://servidorp3.onrender.com/");
 let sendChannel = localConnection.createDataChannel("sendChannel");
 
 socket.onopen = function() {
